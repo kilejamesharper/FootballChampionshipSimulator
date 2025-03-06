@@ -77,48 +77,42 @@ public class PremierLeagueManager implements LeagueManager {
     }
 
     //delete club from array after taking input club name
-    //look to remove for loop inside the iterator as the iterator essentially does this functionality so loop is redundant.
-    //add else to show club not found on if loop and then change found to true rather than its own if
     @Override
     public void deleteClub() {
         System.out.println("==========================");
         System.out.println("Please enter club name: ");
         String name = userInput.nextLine();
-        Boolean found = false;
+
+        // Check for empty input
+        if (name.isEmpty()) {
+            System.out.println("Club name cannot be empty. Please try again.");
+            return;
+        }
 
         Iterator<FootballClub> iterator = clubs.iterator();
+        boolean clubFound = false;
 
         while (iterator.hasNext()) {
-            FootballClub club = new FootballClub();
+            FootballClub club = iterator.next(); // Use the current element
             if (club.getClubName().equalsIgnoreCase(name)) {
-                clubs.remove(club);
+                iterator.remove(); // Safely removes the club
                 System.out.println("Club deleted successfully!");
-                System.out.println("==========================");
-                System.out.println("Current clubs in league: ");
-                for (FootballClub club1 : clubs) {
-                    System.out.println(club1);
-                    System.out.println("==========================");
-                }
-                found = true;
-                break;
+                clubFound = true;
+                break; // Club is deleted, exit loop
             }
-            else {
+        }
 
+        if (!clubFound) {
+            System.out.println("Club not found! Try again...");
+        } else {
+            System.out.println("==========================");
+            System.out.println("Current clubs in league: ");
+            for (FootballClub remainingClub : clubs) {
+                System.out.println(remainingClub); // Print each remaining club
+                System.out.println("==========================");
             }
         }
     }
-
-    /*
-    if (club.getClubName().equals(name)) {
-        clubs.remove(club);
-        System.out.println("Club deleted successfully!")
-        System.out.println("==========================");
-        System.out.println("Current clubs in league: ");
-        for (FootballClub club1 : clubs) {
-            System.out.println(club1);
-            System.out.println("==========================")
-       }
-    ;*/
 
         //display club stats by taking user input for club name
         @Override
