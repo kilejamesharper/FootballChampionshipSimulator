@@ -117,7 +117,25 @@ public class PremierLeagueManager implements LeagueManager {
         //display club stats by taking user input for club name
         @Override
         public void clubStats () {
+            System.out.println("==========================");
+            System.out.println("Please enter club name: ");
+            String name = userInput.nextLine();
+
+            //check if name is empty
+            if (name.isEmpty()){
+                System.out.println("Club name cannot be empty. Please try again.");
+                return;
+            }
+
+            for (FootballClub club : clubs) {
+                if (club.getClubName().equalsIgnoreCase(name)) {
+                    System.out.println(club);
+                    break;
+                }
+            }
+            System.out.println("==========================");
         }
+
 
         //display league table in correct format
         @Override
