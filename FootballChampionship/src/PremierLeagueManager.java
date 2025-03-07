@@ -124,6 +124,7 @@ public class PremierLeagueManager implements LeagueManager {
             //check if name is empty
             if (name.isEmpty()){
                 System.out.println("Club name cannot be empty. Please try again.");
+                System.out.println("==========================");
                 return;
             }
 
