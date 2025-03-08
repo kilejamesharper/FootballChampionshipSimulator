@@ -8,6 +8,7 @@ public class FootballClub extends SportsClub {
     byte goalsConceded;
     byte clubPoints;
     byte matchesPlayed;
+    byte goalsDifference;
 
     //methods overridden from SportsClub abstract class
     @Override
@@ -49,11 +50,13 @@ public class FootballClub extends SportsClub {
     public void setGoalsScored(byte goalsScored) {
 
         this.goalsScored = goalsScored;
+        this.goalsDifference = (byte) (goalsScored - goalsConceded);
     }
 
     public void setGoalsConceded(byte goalsConceded) {
 
         this.goalsConceded = goalsConceded;
+        this.goalsDifference = (byte) (goalsScored - goalsConceded);
     }
 
     public void setClubPoints(byte clubPoints) {
@@ -96,6 +99,10 @@ public class FootballClub extends SportsClub {
     public byte getMatchesPlayed() {
 
         return matchesPlayed;
+    }
+
+    public byte getGoalsDifference() {
+        return goalsDifference;
     }
 
     @Override
