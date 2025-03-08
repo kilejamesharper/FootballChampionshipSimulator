@@ -7,5 +7,4 @@ public interface LeagueManager {
     void addMatch();
     void saveLeague();
     void startGUI();
-    void exitSim();
 }

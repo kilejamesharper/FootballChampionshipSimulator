@@ -21,7 +21,10 @@ public class PremierLeagueManager implements LeagueManager {
             System.out.println("2. Delete Club");
             System.out.println("3. Display Club Stats");
             System.out.println("4. Display League Table");
-            System.out.println("5. Exit");
+            System.out.println("5. Add a Match");
+            System.out.println("5. Save League");
+            System.out.println("5. Start GUI");
+            System.out.println("8. Exit");
             System.out.print("Enter your choice: ");
 
             //stores users input into choice variable
@@ -43,6 +46,15 @@ public class PremierLeagueManager implements LeagueManager {
                     displayLeagueTable();
                     break;
                 case 5:
+                    addMatch();
+                    break;
+                case 6:
+                    saveLeague();
+                    break;
+                case 7:
+                    startGUI();
+                    break;
+                case 8:
                     System.out.println("Exiting...");
                     return;
                 default:
@@ -57,19 +69,39 @@ public class PremierLeagueManager implements LeagueManager {
     public void createClub() {
         System.out.println("==========================");
         System.out.println("Please enter club name: ");
-        String clubName = userInput.nextLine();
+        String name = userInput.nextLine();
+
+        // Check for empty input
+        while (name.isEmpty()) {
+            System.out.println("Club name cannot be empty. Please try again.");
+            System.out.println("==========================");
+            System.out.println("Please enter club name: ");
+            name = userInput.nextLine();
+        }
+
         System.out.println("Please enter club location: ");
-        String clubLocation = userInput.nextLine();
+        String location = userInput.nextLine();
+
+        // Check for empty input
+        while (location.isEmpty()) {
+            System.out.println("Club location cannot be empty. Please try again.");
+            System.out.println("==========================");
+            System.out.println("Please enter club location: ");
+            location = userInput.nextLine();
+        }
 
         FootballClub newClub = new FootballClub();
-        newClub.setClubName(clubName);
-        newClub.setClubLocation(clubLocation);
+
+        newClub.setClubName(name);
+        newClub.setClubLocation(location);
+
         clubs.add(newClub);
 
         System.out.println("==========================");
         System.out.println("Club added successfully!");
         System.out.println("==========================");
         System.out.println("Current clubs in league: ");
+
         for (FootballClub club : clubs) {
             System.out.println(club);
         }
@@ -140,6 +172,7 @@ public class PremierLeagueManager implements LeagueManager {
         //display league table in correct format
         @Override
         public void displayLeagueTable () {
+
         }
 
         @Override
@@ -155,10 +188,5 @@ public class PremierLeagueManager implements LeagueManager {
         @Override
         public void startGUI() {
 
-        }
-
-        @Override
-        public void exitSim() {
-            System.exit(0);
         }
     }
