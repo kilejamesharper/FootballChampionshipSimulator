@@ -116,9 +116,11 @@ public class PremierLeagueManager implements LeagueManager {
         String name = userInput.nextLine();
 
         // Check for empty input
-        if (name.isEmpty()) {
+        while (name.isEmpty()) {
             System.out.println("Club name cannot be empty. Please try again.");
-            return;
+            System.out.println("==========================");
+            System.out.println("Please enter club name: ");
+            name = userInput.nextLine();
         }
 
         Iterator<FootballClub> iterator = clubs.iterator();
@@ -153,11 +155,12 @@ public class PremierLeagueManager implements LeagueManager {
             System.out.println("Please enter club name: ");
             String name = userInput.nextLine();
 
-            //check if name is empty
-            if (name.isEmpty()){
+            // Check for empty input
+            while (name.isEmpty()) {
                 System.out.println("Club name cannot be empty. Please try again.");
                 System.out.println("==========================");
-                return;
+                System.out.println("Please enter club name: ");
+                name = userInput.nextLine();
             }
 
             for (FootballClub club : clubs) {
@@ -172,21 +175,17 @@ public class PremierLeagueManager implements LeagueManager {
         //display league table in correct format
         @Override
         public void displayLeagueTable () {
-
         }
 
         @Override
         public void addMatch() {
-
         }
 
         @Override
         public void saveLeague() {
-
         }
 
         @Override
         public void startGUI() {
-
         }
     }
