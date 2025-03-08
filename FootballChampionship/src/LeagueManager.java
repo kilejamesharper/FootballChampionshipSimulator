@@ -4,4 +4,8 @@ public interface LeagueManager {
     void deleteClub();
     void clubStats();
     void displayLeagueTable();
+    void addMatch();
+    void saveLeague();
+    void startGUI();
+    void exitSim();
 }

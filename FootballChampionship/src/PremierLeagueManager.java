@@ -137,9 +137,28 @@ public class PremierLeagueManager implements LeagueManager {
             System.out.println("==========================");
         }
 
-
         //display league table in correct format
         @Override
         public void displayLeagueTable () {
+        }
+
+        @Override
+        public void addMatch() {
+
+        }
+
+        @Override
+        public void saveLeague() {
+
+        }
+
+        @Override
+        public void startGUI() {
+
+        }
+
+        @Override
+        public void exitSim() {
+            System.exit(0);
         }
     }
