@@ -73,9 +73,7 @@ public class PremierLeagueManager implements LeagueManager {
 
         // Check for empty input
         while (name.isEmpty()) {
-            System.out.println("Club name cannot be empty. Please try again.");
-            System.out.println("==========================");
-            System.out.println("Please enter club name: ");
+            emptyLocationError();
             name = userInput.nextLine();
         }
 
@@ -84,9 +82,7 @@ public class PremierLeagueManager implements LeagueManager {
 
         // Check for empty input
         while (location.isEmpty()) {
-            System.out.println("Club location cannot be empty. Please try again.");
-            System.out.println("==========================");
-            System.out.println("Please enter club location: ");
+            emptyLocationError();
             location = userInput.nextLine();
         }
 
@@ -117,9 +113,7 @@ public class PremierLeagueManager implements LeagueManager {
 
         // Check for empty input
         while (name.isEmpty()) {
-            System.out.println("Club name cannot be empty. Please try again.");
-            System.out.println("==========================");
-            System.out.println("Please enter club name: ");
+            emptyNameError();
             name = userInput.nextLine();
         }
 
@@ -157,9 +151,7 @@ public class PremierLeagueManager implements LeagueManager {
 
             // Check for empty input
             while (name.isEmpty()) {
-                System.out.println("Club name cannot be empty. Please try again.");
-                System.out.println("==========================");
-                System.out.println("Please enter club name: ");
+                emptyNameError();
                 name = userInput.nextLine();
             }
 
@@ -187,5 +179,17 @@ public class PremierLeagueManager implements LeagueManager {
 
         @Override
         public void startGUI() {
+        }
+
+        public void emptyNameError(){
+            System.out.println( "Club name cannot be empty. Please try again.");
+            System.out.println("==========================");
+            System.out.println("Please enter club name: ");
+        }
+
+        public void emptyLocationError(){
+            System.out.println( "Club location cannot be empty. Please try again.");
+            System.out.println("==========================");
+            System.out.println("Please enter club location: ");
         }
     }
