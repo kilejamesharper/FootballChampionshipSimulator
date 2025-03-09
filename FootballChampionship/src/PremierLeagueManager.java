@@ -8,6 +8,7 @@ public class PremierLeagueManager implements LeagueManager {
     //local variable for scanner object
     // Creating scanner to take user input
     Scanner userInput = new Scanner(System.in);
+    int choice;
 
     //creating array list of clubs
     public ArrayList<FootballClub> clubs = new ArrayList<>();
@@ -27,9 +28,19 @@ public class PremierLeagueManager implements LeagueManager {
             System.out.println("8. Exit");
             System.out.print("Enter your choice: ");
 
-            //stores users input into choice variable
-            int choice = userInput.nextInt();
-            userInput.nextLine(); // Consume newline
+            while (!userInput.hasNextInt() && userInput.hasNext()) {
+                invalidInputError();
+                userInput.next();
+            }
+
+            if (userInput.hasNextInt()){
+                choice = userInput.nextInt();
+                userInput.nextLine(); // Consume newline
+            }
+            else{
+                invalidInputError();
+                choice = userInput.nextInt();
+            }
 
             //switch case to run method base on int provided
             switch (choice) {
@@ -67,17 +78,16 @@ public class PremierLeagueManager implements LeagueManager {
     //add club to array after taking user input
     @Override
     public void createClub() {
-        System.out.println("==========================");
-        System.out.println("Please enter club name: ");
+        enterClubName();
         String name = userInput.nextLine();
 
         // Check for empty input
         while (name.isEmpty()) {
-            emptyLocationError();
+            emptyNameError();
             name = userInput.nextLine();
         }
 
-        System.out.println("Please enter club location: ");
+        enterClubLocation();
         String location = userInput.nextLine();
 
         // Check for empty input
@@ -107,8 +117,7 @@ public class PremierLeagueManager implements LeagueManager {
     //delete club from array after taking input club name
     @Override
     public void deleteClub() {
-        System.out.println("==========================");
-        System.out.println("Please enter club name: ");
+        enterClubName();
         String name = userInput.nextLine();
 
         // Check for empty input
@@ -145,8 +154,7 @@ public class PremierLeagueManager implements LeagueManager {
         //display club stats by taking user input for club name
         @Override
         public void clubStats () {
-            System.out.println("==========================");
-            System.out.println("Please enter club name: ");
+            enterClubName();
             String name = userInput.nextLine();
 
             // Check for empty input
@@ -179,6 +187,32 @@ public class PremierLeagueManager implements LeagueManager {
 
         @Override
         public void startGUI() {
+        }
+
+
+        public void enterClubName(){
+            System.out.println("==========================");
+            System.out.println("Please enter club name: ");
+        }
+
+        public void enterClubLocation(){
+            System.out.println("==========================");
+            System.out.println("Please enter club location: ");
+        }
+
+        public void emptyInputError(){
+            System.out.println( "Input cannot be empty. Please try again.");
+            System.out.println("==========================");
+        }
+
+        public void invalidInputError(){
+            System.out.println( "Invalid input. Please try again.");
+            System.out.println("==========================");
+        }
+
+        public void invalidChoiceError(){
+            System.out.println( "Invalid choice. Please try again.");
+            System.out.println("==========================");
         }
 
         public void emptyNameError(){
