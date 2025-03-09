@@ -177,8 +177,63 @@ public class PremierLeagueManager implements LeagueManager {
         public void displayLeagueTable () {
         }
 
+        //go through array and store two random clubs from league in club1 and club2 variables
+        //generate a random number for each club and store use set method to update stats
+        //use input validation from other methods
         @Override
         public void addMatch() {
+
+            if (clubs.size() < 2){
+                System.out.println("There are not enough clubs to add a match!");
+                return;
+            }
+
+            System.out.println( "Please enter the name of the first team: ");
+            String club1name = userInput.nextLine();
+
+            // Check for empty input
+            while (club1name.isEmpty()) {
+                emptyNameError();
+                club1name = userInput.nextLine();
+            }
+
+            boolean clubFound = false;
+            for (FootballClub club : clubs) {
+                if (club1name.equalsIgnoreCase(club.getClubName())){
+                    clubFound = true;
+                    break;
+                }
+            }
+            if (!clubFound){
+                System.out.println("Club not found! Try again...");
+                return;
+            }
+
+            System.out.println( "Please enter the name of the second team: ");
+            String club2name = userInput.nextLine();
+
+            while (club2name.isEmpty()) {
+                emptyNameError();
+                club2name = userInput.nextLine();
+            }
+
+            if (club1name.equalsIgnoreCase(club2name)){
+                System.out.println("You cannot add a match between the same clubs!");
+                return;
+            }
+
+            clubFound = false;
+            for (FootballClub club : clubs) {
+                if (club1name.equalsIgnoreCase(club.getClubName())){
+                    clubFound = true;
+                    break;
+                }
+            }
+            if (!clubFound){
+                System.out.println("Club not found! Try again...");
+                return;
+            }
+
         }
 
         @Override
@@ -189,7 +244,6 @@ public class PremierLeagueManager implements LeagueManager {
         public void startGUI() {
         }
 
-
         public void enterClubName(){
             System.out.println("==========================");
             System.out.println("Please enter club name: ");
@@ -198,11 +252,6 @@ public class PremierLeagueManager implements LeagueManager {
         public void enterClubLocation(){
             System.out.println("==========================");
             System.out.println("Please enter club location: ");
-        }
-
-        public void emptyInputError(){
-            System.out.println( "Input cannot be empty. Please try again.");
-            System.out.println("==========================");
         }
 
         public void invalidInputError(){
